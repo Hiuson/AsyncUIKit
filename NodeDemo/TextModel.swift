@@ -9,28 +9,24 @@
 import UIKit
 
 class TextModel: NSObject {
-    private var calculateSize: CGSize?
-    
-    var size: CGSize {
-        get {
-            guard calculateSize != nil else {
-                return CGSize.zero
-            }
-            
-            return calculateSize!
-        }
+    var calculatedSize: CGSize {
+        get { return pCalculatedSize == nil ? CGSize.zero : pCalculatedSize! }
     }
     
-    var constraintSize: CGSize?
+    private(set) var constraintSize: CGSize?
     
     var attributeString: NSAttributedString?
     var attributeStringImage: UIImage?
     
-    func prepareForRender() {
-        let size = sizeThatFits(constraintSize ?? CGSize())
-        calculateSize = size
+    func prepareForRender(_ constraintSize: CGSize) {
+        self.constraintSize = constraintSize
+        let size = sizeThatFits(constraintSize)
+        pCalculatedSize = size
         attributeStringImage = drawStringImage(size)
     }
+    
+    
+    private var pCalculatedSize: CGSize?
     
     private func sizeThatFits(_ size: CGSize) -> CGSize {
         guard attributeString != nil else {
@@ -61,15 +57,27 @@ class TextModel: NSObject {
 }
 
 extension UILabel {
-    func updateWithModel(_ model: TextModel) {
-        frame = CGRect(origin: frame.origin, size: model.size)
+    func updateWithModel(_ model: TextModel, _ fittingSize: CGSize) {
+        guard model.constraintSize != nil else {
+            assert(true, "Unreachable")
+            return
+        }
+        assert(fittingSize.equalTo(model.constraintSize!))
+        
+        frame = CGRect(origin: frame.origin, size: model.calculatedSize)
         attributedText = model.attributeString
     }
 }
 
 extension UIImageView {
-    func updateWithModel(_ model: TextModel) {
-        frame = CGRect(origin: frame.origin, size: model.size)
+    func updateWithModel(_ model: TextModel, _ fittingSize: CGSize) {
+        guard model.constraintSize != nil else {
+            assert(true, "Unreachable")
+            return
+        }
+        assert(fittingSize.equalTo(model.constraintSize!))
+        
+        frame = CGRect(origin: frame.origin, size: model.calculatedSize)
         image = model.attributeStringImage
     }
 }
