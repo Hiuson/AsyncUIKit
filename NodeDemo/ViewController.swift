@@ -13,15 +13,17 @@ class ViewController: UIViewController {
     var dataArr = [TextModel]()
     
     lazy var scrollView = UIScrollView()
+    lazy var tableView = UITableView(frame: self.view.bounds, style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         scrollView.frame = self.view.bounds
-        self.view.addSubview(scrollView)
         
-        view.backgroundColor = UIColor.orange
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.view.addSubview(tableView)
+
         NSLog("1")
         let viewSize = view.bounds.size
         DispatchQueue.global().async {
@@ -29,26 +31,16 @@ class ViewController: UIViewController {
             for _ in 1...5000 {
                 self.dataArr.append(TextModel())
             }
-            
+
             for textModel in self.dataArr {
                 textModel.attributeString = self.randomStr()
-                textModel.prepareForRender(viewSize)
+                textModel.prepareForRender(CGSize(width: viewSize.width, height: CGFloat.greatestFiniteMagnitude))
             }
-            
+
             NSLog("3")
             DispatchQueue.main.async {
                 NSLog("4")
-                var height: CGFloat = 0
-                for textModel in self.dataArr {
-                    let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: height), size: CGSize.zero))
-                    imageView.updateWithModel(textModel, viewSize)
-                    height += textModel.calculatedSize.height + 2.0
-                    self.scrollView.addSubview(imageView)
-                }
-                self.scrollView.contentSize = CGSize(width: viewSize.width, height: height)
-                NSLog("5")
-                
-                self.view.backgroundColor = UIColor.white
+                self.tableView.reloadData()
             }
         }
     }
@@ -101,5 +93,43 @@ class ViewController: UIViewController {
         let attribute: [NSAttributedString.Key:Any] = [.font: font, .foregroundColor: textColor]
         
         return NSAttributedString(string: "今天天气好askjdhfaskjhsadf🐎🐎🐎🐎🐎", attributes: attribute)
+    }
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return dataArr[indexPath.row].calculatedSize.height
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil {
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
+            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize.zero))
+            imageView.tag = 10086
+            cell?.addSubview(imageView)
+        }
+        
+        let expectSize = CGSize(width: self.view.bounds.size.width, height: CGFloat.greatestFiniteMagnitude)
+        cell!.imageView?.updateWithModel(dataArr[indexPath.row], expectSize)
+        
+        return cell!
+    }
+}
+
+extension UITableViewCell {
+    var imageView: UIImageView? {
+        get {
+            for view in subviews {
+                if view.tag == 10086 {
+                    return view as? UIImageView
+                }
+            }
+            return nil
+        }
     }
 }

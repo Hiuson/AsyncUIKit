@@ -37,7 +37,7 @@ class TextModel: NSObject {
     }
     
     private func drawStringImage(_ size: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, 1)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let ctx = UIGraphicsGetCurrentContext()
         guard ctx != nil else {
             return nil
