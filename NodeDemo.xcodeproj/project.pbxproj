@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A53E271723927EF000601AED /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E271623927EF000601AED /* TextModel.swift */; };
+		C7BD9A40239E64FD0074515C /* TextDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD9A3F239E64FD0074515C /* TextDrawer.swift */; };
 		C7DB3B8C2390F2B40020A64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DB3B8B2390F2B40020A64D /* AppDelegate.swift */; };
 		C7DB3B8E2390F2B40020A64D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DB3B8D2390F2B40020A64D /* SceneDelegate.swift */; };
 		C7DB3B902390F2B40020A64D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DB3B8F2390F2B40020A64D /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		A53E271623927EF000601AED /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
+		C7BD9A3F239E64FD0074515C /* TextDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDrawer.swift; sourceTree = "<group>"; };
 		C7DB3B882390F2B40020A64D /* NodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7DB3B8B2390F2B40020A64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7DB3B8D2390F2B40020A64D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				C7DB3B9F2390F2D50020A64D /* BaseNode.swift */,
 				C7DB3BA12390F3A70020A64D /* TextNode.swift */,
 				A53E271623927EF000601AED /* TextModel.swift */,
+				C7BD9A3F239E64FD0074515C /* TextDrawer.swift */,
 			);
 			path = NodeDemo;
 			sourceTree = "<group>";
@@ -108,6 +111,7 @@
 				TargetAttributes = {
 					C7DB3B872390F2B40020A64D = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1120;
 					};
 				};
 			};
@@ -151,6 +155,7 @@
 				C7DB3B902390F2B40020A64D /* ViewController.swift in Sources */,
 				C7DB3B8C2390F2B40020A64D /* AppDelegate.swift in Sources */,
 				C7DB3BA02390F2D50020A64D /* BaseNode.swift in Sources */,
+				C7BD9A40239E64FD0074515C /* TextDrawer.swift in Sources */,
 				C7DB3BA22390F3A70020A64D /* TextNode.swift in Sources */,
 				C7DB3B8E2390F2B40020A64D /* SceneDelegate.swift in Sources */,
 			);

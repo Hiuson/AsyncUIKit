@@ -33,7 +33,7 @@ class TextModel: NSObject {
             return CGSize.zero
         }
         
-        return attributeString!.boundingRect(with: size, options: .usesLineFragmentOrigin, context: nil).size
+        return TextDrawer.shared.sizeForAttributedString(attributeString!, size)
     }
     
     private func drawStringImage(_ size: CGSize) -> UIImage? {
