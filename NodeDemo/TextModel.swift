@@ -13,47 +13,21 @@ class TextModel: NSObject {
         get { return pCalculatedSize == nil ? CGSize.zero : pCalculatedSize! }
     }
     
-    private(set) var constraintSize: CGSize?
-    
     var attributeString: NSAttributedString?
     var attributeStringImage: UIImage?
     
     func prepareForRender(_ constraintSize: CGSize) {
-        self.constraintSize = constraintSize
-        let size = sizeThatFits(constraintSize)
-        pCalculatedSize = size
-        attributeStringImage = drawStringImage(size)
-    }
-    
-    
-    private var pCalculatedSize: CGSize?
-    
-    private func sizeThatFits(_ size: CGSize) -> CGSize {
         guard attributeString != nil else {
-            return CGSize.zero
+            return
         }
         
-        return TextDrawer.shared.sizeForAttributedString(attributeString!, size)
+        self.constraintSize = constraintSize
+        pCalculatedSize = TextDrawer.shared.sizeForAttributedString(attributeString!, constraintSize)
+        attributeStringImage = TextDrawer.shared.drawnImageForAttributedString(attributeString!, pCalculatedSize!)
     }
     
-    private func drawStringImage(_ size: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        let ctx = UIGraphicsGetCurrentContext()
-        guard ctx != nil else {
-            return nil
-        }
-        
-        ctx!.saveGState()
-        
-        attributeString?.draw(with: CGRect(origin: CGPoint.zero, size: size), options: [.usesLineFragmentOrigin, .usesFontLeading, .truncatesLastVisibleLine], context: nil)
-        
-        ctx!.restoreGState()
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
+    private(set) var constraintSize: CGSize?
+    private var pCalculatedSize: CGSize?
 }
 
 extension UILabel {
