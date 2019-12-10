@@ -15,8 +15,6 @@
 		C7DB3B932390F2B40020A64D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7DB3B912390F2B40020A64D /* Main.storyboard */; };
 		C7DB3B952390F2B60020A64D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7DB3B942390F2B60020A64D /* Assets.xcassets */; };
 		C7DB3B982390F2B60020A64D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7DB3B962390F2B60020A64D /* LaunchScreen.storyboard */; };
-		C7DB3BA02390F2D50020A64D /* BaseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DB3B9F2390F2D50020A64D /* BaseNode.swift */; };
-		C7DB3BA22390F3A70020A64D /* TextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DB3BA12390F3A70020A64D /* TextNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +28,6 @@
 		C7DB3B942390F2B60020A64D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7DB3B972390F2B60020A64D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7DB3B992390F2B60020A64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7DB3B9F2390F2D50020A64D /* BaseNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNode.swift; sourceTree = "<group>"; };
-		C7DB3BA12390F3A70020A64D /* TextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +67,6 @@
 				C7DB3B942390F2B60020A64D /* Assets.xcassets */,
 				C7DB3B962390F2B60020A64D /* LaunchScreen.storyboard */,
 				C7DB3B992390F2B60020A64D /* Info.plist */,
-				C7DB3B9F2390F2D50020A64D /* BaseNode.swift */,
-				C7DB3BA12390F3A70020A64D /* TextNode.swift */,
 				A53E271623927EF000601AED /* TextModel.swift */,
 				C7BD9A3F239E64FD0074515C /* TextDrawer.swift */,
 			);
@@ -154,9 +148,7 @@
 				A53E271723927EF000601AED /* TextModel.swift in Sources */,
 				C7DB3B902390F2B40020A64D /* ViewController.swift in Sources */,
 				C7DB3B8C2390F2B40020A64D /* AppDelegate.swift in Sources */,
-				C7DB3BA02390F2D50020A64D /* BaseNode.swift in Sources */,
 				C7BD9A40239E64FD0074515C /* TextDrawer.swift in Sources */,
-				C7DB3BA22390F3A70020A64D /* TextNode.swift in Sources */,
 				C7DB3B8E2390F2B40020A64D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
