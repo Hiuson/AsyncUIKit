@@ -41,11 +41,10 @@ class TextDrawer: NSObject {
     }
     
     func drawnImageForAttributedString(_ attributeString: NSAttributedString, _ constraint: CGSize) -> UIImage? {
-        let normalized = cleanAttrString(attributeString)
         let cachedSize = sizeForAttributedString(attributeString, constraint, true)
 
         if !cachedSize.equalTo(CGSize.zero) {
-            let cacheKey = [normalized, cachedSize] as NSArray
+            let cacheKey = [attributeString, cachedSize] as NSArray
             let cacheImage = cachedImages.object(forKey: cacheKey)
             if cacheImage != nil {
                 return cacheImage!
@@ -53,7 +52,7 @@ class TextDrawer: NSObject {
         }
         
         let stringSize = sizeForAttributedString(attributeString, constraint)
-        let cacheKey = [normalized, stringSize] as NSArray
+        let cacheKey = [attributeString, stringSize] as NSArray
         let cacheImage = cachedImages.object(forKey: cacheKey)
         if cacheImage != nil {
             return cacheImage!
