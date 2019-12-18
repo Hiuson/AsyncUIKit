@@ -18,16 +18,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        scrollView.frame = self.view.bounds
+        setupUI()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.view.addSubview(tableView)
-
-        NSLog("1")
+        displayCells()
+    }
+    
+    func displayCells() {
+        NSLog("Timing log 1")
         let viewSize = view.bounds.size
+        //Simulate the network request data processing
         DispatchQueue.global().async {
-            NSLog("2")
+            NSLog("Timing log 2")
             for _ in 1...5000 {
                 self.dataArr.append(TextModel())
             }
@@ -37,12 +38,19 @@ class ViewController: UIViewController {
                 textModel.prepareForRender(CGSize(width: viewSize.width, height: CGFloat.greatestFiniteMagnitude))
             }
 
-            NSLog("3")
+            NSLog("Timing log 3")
+            //Simulate network request callback
             DispatchQueue.main.async {
-                NSLog("4")
+                NSLog("Timing log 4")
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func setupUI() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.view.addSubview(tableView)
     }
     
     func randomStr() -> NSAttributedString {
@@ -54,8 +62,7 @@ class ViewController: UIViewController {
         
         let attribute: [NSAttributedString.Key:Any] = [.font: font, .foregroundColor: textColor]
         
-//        let str = "今天天气好\u{1AB3}askjdhfaskjhsadf🐎🐎🐎🐎🐎"
-        let str = "‎@ꕥ ⭏ 𝚁 . 𝘐 𝑵ꪖ ᪳‬‭ let me check~"
+        let str = "今天天气好askjdhfaskjhsadf🐎🐎🐎🐎🐎"
         
         return NSAttributedString(string: str, attributes: attribute)
     }
